@@ -1,0 +1,39 @@
+# .github/workflows/self_hosted_smoke.yml
+name: self-hosted-smoke
+on:
+  push:
+  workflow_dispatch:
+
+concurrency:
+  group: self-hosted-smoke-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    name: smoke-${{ matrix.idx }}
+    runs-on: [self-hosted, fireactions]   # <- MUST match your pool labels
+    strategy:
+      fail-fast: false
+      matrix: { idx: [1, 2, 3, 4, 5] }
+    timeout-minutes: 15
+    steps:
+      - name: Identify runner
+        run: |
+          echo "RUNNER_NAME=$RUNNER_NAME"
+          echo "OS/ARCH=$RUNNER_OS/$RUNNER_ARCH"
+          uname -a
+      - uses: actions/checkout@v4
+      - name: Smoke ${{ matrix.idx }}
+        run: echo "smoke OK from $RUNNER_NAME — idx=${{ matrix.idx }} run_id=${GITHUB_RUN_ID}"
+
+  verify:
+    name: verify-all
+    needs: [smoke]
+    runs-on: [self-hosted, fireactions]   # <- same labels
+    steps:
+      - name: Assert success
+        run: |
+          RESULTS="${{ join(needs.*.result, ',') }}"
+          echo "results=$RESULTS"
+          if echo "$RESULTS" | grep -E 'failure|cancelled'; then exit 1; fi
+          echo "All 5 parallel runners completed successfully ✅"
