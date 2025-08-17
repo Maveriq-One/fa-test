@@ -5,8 +5,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  hello:
+  smoke:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        runner_id: [1, 2, 3, 4, 5]
     steps:
-      - name: Smoke test
-        run: echo "smoke OK:${GITHUB_RUN_ID}"
+      - name: Smoke test ${{ matrix.runner_id }}
+        run: echo "smoke OK from runner ${{ matrix.runner_id }} — run_id=${GITHUB_RUN_ID}"
