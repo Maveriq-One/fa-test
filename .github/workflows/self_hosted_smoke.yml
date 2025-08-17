@@ -5,7 +5,7 @@ on:
 
 jobs:
   smoke-test:
-    runs-on: [self-hosted, fireactions]
+    runs-on: self-hosted
     steps:
       - name: Checkout
         uses: actions/checkout@v4
