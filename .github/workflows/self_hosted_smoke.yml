@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix: { idx: [1, 2, 3, 4, 5] }
     steps:
-      - name: Evidence: runner identity
+      - name: Evidence:runner identity
         run: |
           echo "RUNNER_NAME=${{ runner.name }}"
           echo "RUNNER_OS=${{ runner.os }}"
