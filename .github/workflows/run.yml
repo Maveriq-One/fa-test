@@ -1,8 +1,8 @@
-# .github/workflows/run.yml
 name: fireactions-smoke
 on:
-  workflow_dispatch:
-  push:
+  push: {}
+  workflow_dispatch: {}
+
 jobs:
   hello:
     runs-on: ubuntu-latest
