@@ -1,4 +1,4 @@
-name: self-hosted-smoke
+name: Self-hosted Smoke Test
 
 on:
   workflow_dispatch:
@@ -10,5 +10,5 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Say Hello
-        run: echo "🔥 Self-hosted runner is alive on $(hostname) at $(date)"
+      - name: Run hello
+        run: echo "Runner $(hostname) is alive"
