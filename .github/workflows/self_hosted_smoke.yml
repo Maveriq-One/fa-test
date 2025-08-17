@@ -16,7 +16,7 @@ jobs:
           echo "RUNNER_NAME=${{ runner.name }}"
           echo "RUNNER_OS=${{ runner.os }}"
           echo "RUNNER_ARCH=${{ runner.arch }}"
-      - name: Evidence: kernel & container host
+      - name: Evidence:kernel & container host
         run: |
           uname -a
           whoami
