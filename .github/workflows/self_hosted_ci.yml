@@ -1,0 +1,16 @@
+name: Self-hosted CI Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ci-test:
+    runs-on: [self-hosted, fireactions]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run tests
+        run: |
+          echo "Running tests on runner $(hostname)"
+          echo "All good bro 🚀"
