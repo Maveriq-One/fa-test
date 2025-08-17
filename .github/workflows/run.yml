@@ -1,13 +1,10 @@
+# .github/workflows/run.yml
 name: fireactions-smoke
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
-
 jobs:
   hello:
-    runs-on: self-hosted   # <- matches our pool labels
+    runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "✅ Runner is alive: $(uname -a)"
-          echo "Github ref: $GITHUB_REF"
+      - run: echo "smoke OK: $GITHUB_RUN_ID"
