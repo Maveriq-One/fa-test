@@ -1,10 +1,12 @@
 name: fireactions-smoke
+
 on:
-  push: {}
-  workflow_dispatch: {}
+  push:
+  workflow_dispatch:
 
 jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "smoke OK: $GITHUB_RUN_ID"
+      - name: Smoke test
+        run: echo "smoke OK:${GITHUB_RUN_ID}"
