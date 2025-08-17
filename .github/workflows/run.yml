@@ -1,0 +1,13 @@
+name: fireactions-smoke
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  hello:
+    runs-on: [self-hosted, fireactions]   # <- matches our pool labels
+    steps:
+      - run: |
+          echo "✅ Runner is alive: $(uname -a)"
+          echo "Github ref: $GITHUB_REF"
