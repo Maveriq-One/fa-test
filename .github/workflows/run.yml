@@ -6,7 +6,7 @@ on:
 
 jobs:
   hello:
-    runs-on: [self-hosted, fireactions]   # <- matches our pool labels
+    runs-on: self-hosted   # <- matches our pool labels
     steps:
       - run: |
           echo "✅ Runner is alive: $(uname -a)"
